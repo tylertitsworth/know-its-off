@@ -1,42 +1,39 @@
-# Know-its-off
+# Know It's Off
 
-Directions for use:
+The Know It's Off Capstone Project Web Interface Development Branch is primarily used for creating new features for the production branch.
+
+## Requirements
+
+- A minimum of Python 3.8 should be installed on the system, please update pip with ```python3 -m pip install --upgrade pip```. 
 
 
-First, you need to check your database settings in `database_config.py` and define your database login credentials in `constants.py`. We have created an example of `constants.py` with the `example-constants.py` file.
+- The Yarn Package Manager must be installed, make sure you are manually installing the Alternatives section found on the [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable) site.
 
-`python3 -m pip install -r requirements.txt --user`
 
-then go into the `myClient` directory 
-edit .env with the appropriate baseURL address for the api server
+- A database constants.py and config.py while should be supplied with the proper options, secret key, and login information
 
-and run 
-`yarn build`
+## Getting Started
 
-Then you can go back out of the `myClient` directory and run the server
+Create a python virutal environment with ```python3 -m venv venv```, source to the virtual environment using ```source ./venv/bin/activate```, and then install the required software using ```python3 -m pip install -r requirements.txt```. Afterwards, initialize yarn with ```yarn```.
 
-`python3 main.py`
+To apply the /app/models.py file to your assigned database, perform the following:
+- ```flask db migrate```
+- ```flask db upgrade```
 
-## Yarn
+If the current migration is not supported, delete the /migrations folder and use ```flask db init``` before running the previous steps again.
 
-`yarn` is a package management tool for javascript libraries. To learn more about Yarn, you can view their [webpage](https://classic.yarnpkg.com/en/). In order to get started using Yarn, you can [look here](https://classic.yarnpkg.com/en/docs/getting-started).
+## Usage
+- ```yarn start``` will run the Flask API at localhost:5000.
 
-## Project structure
+- ```yarn start-dev``` will run the React Frontend at localhost:3000.
 
-This project is organized into 3 stacks -- the front-end, 
-the back-end, and the database. Using 
-[Flask blueprints](https://flask.palletsprojects.com/en/1.1.x/blueprints/), 
-we register different paths which specify access
-to different resources on the server. 
-All the paths can be found in the `routes` directory. 
-The front end is a
-[single-page application (SPA)](https://en.wikipedia.org/wiki/Single-page_application) 
-using [React](https://reactjs.org/). 
-Javascript is built and compiled into the `myClient/build` directory, 
-which is where all statically served files are sent from.
+- ```yarn build``` will create a minified React frontend output at /build.
 
+
+## Contributing
+
+This is a private repository only intended to be used by Oregon State University EECS Capstone Students.
+Students should create a separate branch to make changes to before submitting a pull request and assigning a reviewer to verify that the code submitted is valid and tested before performing a squash and merge.
 
 ## License
-
-[MIT License](https://github.com/Tonyenike/Know-its-off/blob/master/LICENSE.md)
->>>>>>> 2403d4ed2908a12d2ea9cb927160b266a848d8a4
+[MIT](https://choosealicense.com/licenses/mit/)
