@@ -3,7 +3,7 @@
 The Know It's Off Capstone Project Web Interface Development Branch is primarily used for creating new features for the production branch.
 
 ## Requirements
-- Any Linux Distrobution, preferably a VM like [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+- Any Linux Distro, preferably a VM like [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 
 - A minimum of Python 3.8 should be installed on the system, update pip with ```python3 -m pip install --upgrade pip```. 
