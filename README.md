@@ -28,7 +28,7 @@ If the current migration is not supported, delete the /migrations folder and use
 - ```yarn start``` will run the Flask API at localhost:5000
 
 - ```yarn start-dev``` will run the React Frontend at localhost:3000
-- 
+
 - ```yarn build``` will create a minified React frontend output at /build
 
 - ```yarn test``` to run the test suite
