@@ -3,8 +3,10 @@
 The Know It's Off Capstone Project Web Interface Development Branch is primarily used for creating new features for the production branch.
 
 ## Requirements
+- Any Linux Distrobution, preferably a VM like [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
-- A minimum of Python 3.8 should be installed on the system, please update pip with ```python3 -m pip install --upgrade pip```. 
+
+- A minimum of Python 3.8 should be installed on the system, update pip with ```python3 -m pip install --upgrade pip```. 
 
 
 - The Yarn Package Manager must be installed, make sure you are manually installing the Alternatives section found on the [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable) site.
@@ -23,12 +25,13 @@ To apply the /app/models.py file to your assigned database, perform the followin
 If the current migration is not supported, delete the /migrations folder and use ```flask db init``` before running the previous steps again.
 
 ## Usage
-- ```yarn start``` will run the Flask API at localhost:5000.
+- ```yarn start``` will run the Flask API at localhost:5000
 
-- ```yarn start-dev``` will run the React Frontend at localhost:3000.
+- ```yarn start-dev``` will run the React Frontend at localhost:3000
+- 
+- ```yarn build``` will create a minified React frontend output at /build
 
-- ```yarn build``` will create a minified React frontend output at /build.
-
+- ```yarn test``` to run the test suite
 
 ## Contributing
 
