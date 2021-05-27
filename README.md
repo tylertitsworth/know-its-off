@@ -39,7 +39,7 @@ This is a private repository only intended to be used by Oregon State University
 Students should create a separate branch to make changes to before submitting a pull request and assigning a reviewer to verify that the code submitted is valid and tested before performing a squash and merge.
 
 ## Resources
-Check out our Alternative Documentation source on [Google Docs](https://drive.google.com/drive/folders/168pbWIIE01XvCgvPQocodXuJtvq9ZIGi?usp=sharing)
+Check out our Alternative Documentation source on [Google Docs](https://drive.google.com/drive/folders/168pbWIIE01XvCgvPQocodXuJtvq9ZIGi?usp=sharing).
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
