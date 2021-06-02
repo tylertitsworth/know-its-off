@@ -56,6 +56,7 @@ def device_get_patch_delete_by_id(id):
         if not v.validate(request.get_json()):
             abort(400, description=v.errors)
         myDevice.update(request.get_json())
+
         #The changes are not saved to the database until you commit them.
         db.session.commit()
         returnValue = jsonify(myDevice.to_dict())
@@ -128,6 +129,7 @@ def device_get_post():
             abort(400, description=v.errors)
         new_device = Device(**request.get_json())
         new_device.user_id = current_user.get_id()
+        #Set the device state to 2 (uninitialized)
         new_device.device_state = 2
         db.session.add(new_device)
         db.session.commit()
@@ -135,3 +137,4 @@ def device_get_post():
         db.session.close()
         print(new_device, " Added")
         return returnValue, 201
+

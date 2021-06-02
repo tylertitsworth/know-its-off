@@ -1,0 +1,140 @@
+#****************************************************************************************************
+# FILENAME: default
+# DESCRIPTION: This file is based upon the original default file packaged with NGINX. It provides
+# the default server configuration for the project before adding in Certbot. This configuration is
+# wide open and not secure, to prevent CORS errors. You should close these gaps in future development.
+# Probably would be a good idea to install a firewall too.
+# AUTHOR(S): Douglas Wilson
+#****************************************************************************************************
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# http://wiki.nginx.org/Pitfalls
+# http://wiki.nginx.org/QuickStart
+# http://wiki.nginx.org/Configuration
+##
+
+server {
+
+	#Determines where we look for our web files.
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PhpMyAdmin
+	index index.html index.htm index.nginx-debian.html index.php;
+
+	server_name www.knowitsoff.com;
+
+	#The location / handles any connection that deals with the root of our website.
+	#I.e. we go to www.knowitsoff.com
+	location / {
+		#The header statements blow our server policy wide open to accept everything.
+		#This means that we will never get CORS errors while Flask is running.
+		#On the otherhand, no security.
+		if ($request_method = 'OPTIONS') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			#
+			# Custom headers and headers various browsers *should* be OK with but aren't
+			#
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			#
+			# Tell client that this pre-flight info is valid for 20 days
+			#
+			add_header 'Access-Control-Max-Age' 1728000;
+			add_header 'Content-Type' 'text/plain; charset=utf-8';
+			add_header 'Content-Length' 0;
+			return 204;
+		}
+		if ($request_method = 'POST') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+		}
+		if ($request_method = 'GET') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+		}		# First attempt to serve request as file, then
+# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+
+	#The location / handles any connection that deals with our api.
+	#I.e. we want to access the backend at www.knowitsoff.com/api
+	location /api{
+		#Proxy_pass passes any request to the API through to the Flask backend, otherwise it would attempt to access the website.
+		#As our Flask backend runs on port 5000, any request to API is sent to that port.
+		include proxy_params;
+		proxy_pass http://127.0.0.1:5000/api;
+		if ($request_method = 'OPTIONS') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			#
+			# Custom headers and headers various browsers *should* be OK with but aren't
+			#
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			#
+			# Tell client that this pre-flight info is valid for 20 days
+			#
+			add_header 'Access-Control-Max-Age' 1728000;
+			add_header 'Content-Type' 'text/plain; charset=utf-8';
+			add_header 'Content-Length' 0;
+			return 204;
+		}
+		if ($request_method = 'POST') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+		}
+		if ($request_method = 'GET') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+		}
+	}
+	#The location /assist handles any connection that deals with google assistant.
+	location /assist {
+		include proxy_params;
+		proxy_pass http://127.0.0.1:5000/assist;
+		if ($request_method = 'OPTIONS') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			#
+			# Custom headers and headers various browsers *should* be OK with but aren't
+			#
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			#
+			# Tell client that this pre-flight info is valid for 20 days
+			#
+			add_header 'Access-Control-Max-Age' 1728000;
+			add_header 'Content-Type' 'text/plain; charset=utf-8';
+			add_header 'Content-Length' 0;
+			return 204;
+		}
+		if ($request_method = 'POST') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+			add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+		}
+		if ($request_method = 'GET') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+			add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+
+		}
+	}
+
+	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+	#
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+
+	# With php7.0-fpm:
+		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+	}
+
+}

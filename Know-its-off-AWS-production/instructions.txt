@@ -1,0 +1,4 @@
+sudo service docker start
+sudo docker build -t flask-container ./flask
+sudo docker build -t nginx-container ./nginx
+nohup docker-compose up &

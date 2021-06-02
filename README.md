@@ -1,9 +1,9 @@
 # Know It's Off
 
-The Know It's Off Capstone Project Web Interface Development Branch is primarily used for creating new features for the production branch.
+The Know It's Off Capstone Project Web Interface Production Branch features stable code for use in public releases.
 
 ## Requirements
-- Any Linux Distro, preferably a VM like [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+- Any Linux Distro, but preferably a Raspberry Pi.
 
 
 - A minimum of Python 3.8 on the system, update pip with ```python3 -m pip install --upgrade pip```. 
@@ -13,7 +13,6 @@ The Know It's Off Capstone Project Web Interface Development Branch is primarily
 
 
 - A database constants.py and config.py while should be supplied with the proper options, secret key, and login information
-
 ## Getting Started
 
 Create a python virutal environment with ```python3 -m venv venv```, source to the virtual environment using ```source ./venv/bin/activate```, and then install the required software using ```python3 -m pip install -r requirements.txt```. Afterwards, initialize yarn with ```yarn```.
@@ -24,14 +23,19 @@ To apply the /app/models.py file to your assigned database, perform the followin
 
 If the current migration is not supported, delete the /migrations folder and use ```flask db init``` before running the previous steps again.
 
-## Usage
-- ```yarn start``` will run the Flask API at localhost:5000
+Then go to `src/axios` and change the baseURL to a domain that you own.
 
-- ```yarn start-dev``` will run the React Frontend at localhost:3000
+Next run `yarn build` to make the static files for the website. 
 
-- ```yarn build``` will create a minified React frontend output at /build
+Copy the default file in `/nginx` to `/etc/nginx/sites-available` and restart the nginx service.
 
-- ```yarn test``` to run the test suite
+Then copy the contents of the `build` folder to `/var/www/html`.
+
+Lastly, run the service with`flask run &`.
+
+## AWS Legacy Code
+
+This folder contains files for running Know Its Off on Amazon's cloud servers. It's dockerized for easy setup and teardown, however, updating the files will require the developer to port over all Flask files from another branch, and move a premade `build` folder built with the correct baseURL into the `flask` folder.
 
 ## Contributing
 
@@ -43,3 +47,4 @@ Check out our Alternative Documentation source on [Google Docs](https://drive.go
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
