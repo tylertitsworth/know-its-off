@@ -1,37 +1,33 @@
 # Know It's Off
 
-The Know It's Off Capstone Project Web Interface Development Branch is primarily used for creating new features for the production branch.
+The Know It's Off Capstone Project Microcontroller Branch is used for holding all code and resources needed to program the Know It's Off device.
 
 ## Requirements
-- Any Linux Distro, preferably a VM like [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+- Arduino IDE 1.8.15 [Arduino](https://www.arduino.cc/en/software)
 
 
-- A minimum of Python 3.8 on the system, update pip with ```python3 -m pip install --upgrade pip```. 
+- ESP8266 Arduino Core [ESP8266 Arduino Core](https://arduino-esp8266.readthedocs.io/en/latest/installing.html)
 
 
-- The Yarn Package Manager must be installed, make sure you are manually installing the Alternatives section found on the [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable) site.
+- LittleFS for ESP8266 [ESP8266 Arduino Core](https://arduino-esp8266.readthedocs.io/en/latest/filesystem.html)
 
-
-- A database constants.py and config.py while should be supplied with the proper options, secret key, and login information
 
 ## Getting Started
 
-Create a python virutal environment with ```python3 -m venv venv```, source to the virtual environment using ```source ./venv/bin/activate```, and then install the required software using ```python3 -m pip install -r requirements.txt```. Afterwards, initialize yarn with ```yarn```.
+Install ESP8266 2.7.4 (3.0+ not working) from Arduino Board Manager
 
-To apply the /app/models.py file to your assigned database, perform the following:
-- ```flask db migrate```
-- ```flask db upgrade```
+Set board to Generic ESP8266 Module with Flash Size:4MB(FS:3MB OTA:~512KB)
 
-If the current migration is not supported, delete the /migrations folder and use ```flask db init``` before running the previous steps again.
+Copy contents of Library folder to User/Documents/Arduino/Libraries
 
 ## Usage
-- ```yarn start``` will run the Flask API at localhost:5000
 
-- ```yarn start-dev``` will run the React Frontend at localhost:3000
+Launch your Know It's Off device into bootload mode
 
-- ```yarn build``` will create a minified React frontend output at /build
+Upload data with ```Tools > ESP8266 LittleFS Data Upload```
 
-- ```yarn test``` to run the test suite
+Program the device with ```Sketch > Upload```
 
 ## Contributing
 
