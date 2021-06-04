@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Bootstrap CSS and icon -->
+    <link href="/bootstrap.min.css" rel="stylesheet">
+    <link href="/beavs.ico" rel="icon" type="image/x-icon">
+
+    <title>Know It's Off Device Setup</title>
+</head>
+<body class="text-center text-light my-5 mx-5" style="background-color:#1b1c1f">
+    <!-- Main Webpage -->
+    <div id="app">
+        <h1>Know It's Off Device Setup</h1>
+        <p class="pt-2">Device ID: %ID%</p>
+        <form class="input-group mb-3 pt-3" action="/get">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">SSID</span>
+            </div>
+            <input name="routerSSID" type="text" class="form-control" placeholder="%ROUTERSSID%" aria-label="SSID" aria-describedby="basic-addon1">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="submit">Update SSID</button>
+            </div>
+        </form>
+        <form class="input-group mb-3 pt-3" action="/get">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon2">Password</span>
+            </div>
+            <input name="routerPASS" type="text" class="form-control" placeholder="%ROUTERPASSWORD%" aria-label="Password" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="submit">Update Password</button>
+            </div>
+        </form>
+        <form class="input-group mb-3 pt-3" action="/get">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">Hostname</span>
+            </div>
+            <input name="hostID"type="text" class="form-control" placeholder="%HOSTNAME%" aria-label="Hostname" aria-describedby="basic-addon3">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="submit">Update Hostname</button>
+            </div>
+        </form>
+        <form class="input-group pt-3" action="/upload" method="post" enctype="multipart/form-data">
+            <div class="custom-file bg-success">
+              <input type="file" class="custom-file-input" name="trust_root">
+              <label class="custom-file-label bg-secondary" style="color:white" type="file" for="trust_root">Certificate</label>
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="submit">Upload</button>
+            </div>
+        </form>
+        <form class="pt-3" action="/trust_root.txt" method="get">
+            <button class="btn btn-block btn-outline-secondary">View Certificate</button>
+        </form>
+
+        <form class="form-group pt-5" action="/calibrate">
+            <button class="btn btn-lg btn-block btn-success btn-space" type="submit">Calibrate Light Sensor</button>
+        </form>
+        <form class="form-group" action="/reset">
+            <button class="btn btn-lg btn-block btn-danger btn-space" type="submit">Save Config and Reset</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap Scripts -->
+    <script src="/bootstrap.min.js"></script>
+</body>
+</html>
