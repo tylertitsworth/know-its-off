@@ -56,17 +56,7 @@ def device_get_patch_delete_by_id(id):
         if not v.validate(request.get_json()):
             abort(400, description=v.errors)
 
-        #We have to also update the battery logs when we change the device_id
-        #Normally you could use an update cascade in mySQL, however SQL alchemy does
-        #not offer this.
-        #SELECT *
-        #FROM battery_logs
-        #WHERE device_id = id
-        #batLogs = BatteryLogger.query.filter_by(device_id=id).all()
-
         #Update each battery log with a matching ID
-        #We have to update the logs BEFORE the device, otherwise we will
-        #run into foreign key errors
         print("Looking for ID: ", request.get_json().get("id"))
         num_rows_updated = BatteryLogger.query.filter_by(device_id = id).update(dict(device_id = request.get_json().get("id")))
 
