@@ -3,7 +3,9 @@
 The Know It's Off Capstone Project Web Interface Production Branch features stable code for use in public releases.
 
 ## Requirements
-- Any Linux Distro, but preferably a Raspberry Pi.
+- A Raspberry Pi or other micro-PC solution.
+
+- Any Linux Distro, but preferably Ubuntu.
 
 
 - A minimum of Python 3.8 on the system, update pip with ```python3 -m pip install --upgrade pip```. 
